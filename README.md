@@ -7,7 +7,7 @@ Simple app for blocking access to websites.
 Website Blocker is an app that lets you block any website on your device without installing any additional software. It works by modifying the built-in hosts file, which is a system file that maps domain names to IP addresses. 
 By redirecting unwanted websites to the loopback address (127.0.0.1), Website Blocker prevents them from loading in your browser. You can easily add or remove websites from your block list using the app’s simple interface.
 
-##Demonstration
+## Demonstration
 
 Tutorial and demonstration of usage:
 
