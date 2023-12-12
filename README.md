@@ -15,7 +15,7 @@ Tutorial and demonstration of usage:
 ### Dependencies
 
 Windows Operating System / hosts file
-*Note: App has been tested on Windows 10*
+<br />*Note: App has been tested on Windows 10*
 
 ### Executing program
 
