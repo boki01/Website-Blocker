@@ -9,11 +9,6 @@ By redirecting unwanted websites to the loopback address (127.0.0.1), Website Bl
 
 ## Getting Started
 
-### Demonstration
-
-Tutorial and demonstration of usage:
-
-
 ### Dependencies
 
 Windows Operating System / hosts file
@@ -22,6 +17,10 @@ Windows Operating System / hosts file
 ### Executing program
 
 Just download the .exe file from the 'Exe' folder, and run it as administrator.
+
+### Demonstration
+
+Tutorial and demonstration of usage:
 
 ## Author
 
