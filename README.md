@@ -1,31 +1,33 @@
 # Website Blocker
 
-Simple app for blocking access to websites. 
+Jednostavna aplikacija koja omogućava zabranu pristupa pojedinim web-stranicama.
 
-## Description
+## Opis
 
-Website Blocker is an app that lets you block any website on your PC without installing any additional software. It works by modifying the <br />built-in 'hosts' file, which is a system file that maps domain names to IP addresses. 
-By redirecting unwanted websites to the loopback address (127.0.0.1), Website Blocker prevents them from loading in your browser. You can easily add or remove websites from your block list using the app’s simple interface.
+<!--Website Blocker is an app that lets you block any website on your PC without installing any additional software. It works by modifying the <br />built-in 'hosts' file, which is a system file that maps domain names to IP addresses. 
+By redirecting unwanted websites to the loopback address (127.0.0.1), Website Blocker prevents them from loading in your browser. You can easily add or remove websites from your block list using the app’s simple interface. -->
 
-## Getting Started
+Website Blocker je aplikacija koja omogućava zabranu pristupa pojedinim web-stranicama na vašem računalu. Radi na način da mijenja ugrađenu 'hosts' datoteku. 'hosts' je sistemska datoteka koja omogućava povezivanje IP adresa s domenama. Znajući taj podatak, aplikacija jednostavno registrira neželjenu domenu web-stranice s loopback adresom (127.0.0.1) što, u najužem smislu, blokira pristup web-stranici. Možete lako dodati ili ukloniti stranice s "crne" liste koristeći jednostavno sučelje aplikacije.
 
-### Dependencies
+## Početak rada
 
-Windows Operating System / hosts file
-<br />*Note: App has been tested on Windows 10*
+### Dodatna oprema o kojoj aplikacija ovisi
 
-### Executing program
+Windows Operativni Sustav
+<br />*Napomena: Aplikacija je testirana na Windows 10 Operativnom Sustavu*
 
-Just download the .exe file from the 'Exe' folder, and run it as administrator.
+### Pokretanje programa
 
-### Demonstration
+Jednostavno preuzeti .exe datoteku koja se nalazi u direktoriju "Exe". Pokrenuti aplikaciju s najvećim privilegijama.
 
-Tutorial and demonstration of usage:
+### Demonstracija
+
+Tutorial i demonstracija korištenja:
 
 
 https://github.com/boki01/Website-Blocker/assets/137549122/4f058128-1202-4077-b84e-8513af3030aa
 
 
-## Author
+## Autor
 
 Borna Štefan
