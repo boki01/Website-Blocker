@@ -22,6 +22,10 @@ Just download the .exe file from the 'Exe' folder, and run it as administrator.
 
 Tutorial and demonstration of usage:
 
+
+https://github.com/boki01/Website-Blocker/assets/137549122/4f058128-1202-4077-b84e-8513af3030aa
+
+
 ## Author
 
 Borna Štefan
