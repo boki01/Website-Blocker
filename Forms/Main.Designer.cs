@@ -33,8 +33,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.add = new System.Windows.Forms.Button();
             this.info = new System.Windows.Forms.Label();
-            this.text = new NullTextBox();
             this.infoIcon = new System.Windows.Forms.PictureBox();
+            this.text = new NullTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoIcon)).BeginInit();
@@ -75,7 +75,7 @@
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(75, 21);
             this.add.TabIndex = 3;
-            this.add.Text = "Block";
+            this.add.Text = "Dodaj";
             this.add.UseVisualStyleBackColor = false;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
@@ -84,20 +84,10 @@
             this.info.AutoSize = true;
             this.info.Location = new System.Drawing.Point(25, 308);
             this.info.Name = "info";
-            this.info.Size = new System.Drawing.Size(159, 13);
+            this.info.Size = new System.Drawing.Size(156, 13);
             this.info.TabIndex = 5;
-            this.info.Text = "Check if the URL contains www";
+            this.info.Text = "Provjerite sadrži li domena www";
             this.info.Visible = false;
-            // 
-            // text
-            // 
-            this.text.Cue = "www.example.com";
-            this.text.Location = new System.Drawing.Point(12, 286);
-            this.text.Name = "text";
-            this.text.Size = new System.Drawing.Size(400, 20);
-            this.text.TabIndex = 2;
-            this.text.Enter += new System.EventHandler(this.text_Enter);
-            this.text.Leave += new System.EventHandler(this.text_Leave);
             // 
             // infoIcon
             // 
@@ -109,6 +99,16 @@
             this.infoIcon.TabIndex = 4;
             this.infoIcon.TabStop = false;
             this.infoIcon.Visible = false;
+            // 
+            // text
+            // 
+            this.text.Cue = "www.example.com";
+            this.text.Location = new System.Drawing.Point(12, 286);
+            this.text.Name = "text";
+            this.text.Size = new System.Drawing.Size(400, 20);
+            this.text.TabIndex = 2;
+            this.text.Enter += new System.EventHandler(this.text_Enter);
+            this.text.Leave += new System.EventHandler(this.text_Leave);
             // 
             // Main
             // 
