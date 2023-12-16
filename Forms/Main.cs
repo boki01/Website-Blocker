@@ -44,7 +44,10 @@ namespace Website_Blocker_from_scratch
             try 
             {
                 //Čitanje datoteke 'hosts'
-                string[] lines = System.IO.File.ReadAllLines(@"C:\Windows\System32\drivers\etc\hosts");
+                string windowsPath = Environment.GetEnvironmentVariable("windir");
+                string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
+                string[] lines = System.IO.File.ReadAllLines(hostsFilePath);
+
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Crna lista"); //Dodavanje stupca "Crna lista"
 
@@ -80,8 +83,9 @@ namespace Website_Blocker_from_scratch
         private void update()
         {
             //Izvrši se sve isto kao u Main_Load
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Windows\System32\drivers\etc\hosts");
-            lines = System.IO.File.ReadAllLines(@"C:\Windows\System32\drivers\etc\hosts");
+            string windowsPath = Environment.GetEnvironmentVariable("windir");
+            string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
+            string[] lines = System.IO.File.ReadAllLines(hostsFilePath);
 
             DataTable dt = new DataTable();
             dt.Columns.Add("Crna lista");
@@ -118,6 +122,9 @@ namespace Website_Blocker_from_scratch
 
         private void add_Click(object sender, EventArgs e) //Prilikom pritiska gumba "Dodaj" ; dodavanje u datoteku "hosts"
         {
+            string windowsPath = Environment.GetEnvironmentVariable("windir");
+            string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
+
             if (text.Text != "" && !IsParameterInDataGrid(text.Text)) //Ako je tekst u TextBox-u prazan ili ako postoji u DataGridView-u => ignoriraj
             {
                 
@@ -164,7 +171,7 @@ namespace Website_Blocker_from_scratch
 
                 try
                 {
-                    File.AppendAllText(@"C:\Windows\System32\drivers\etc\hosts", textToAdd + firstUrl); //Dodavanje prve domene u datoteku 'hosts'
+                    File.AppendAllText(hostsFilePath, textToAdd + firstUrl); //Dodavanje prve domene u datoteku 'hosts'
                 }
                 catch (Exception ex) //Ako se dogodi pogreška
                 {
@@ -224,7 +231,8 @@ namespace Website_Blocker_from_scratch
             var cell = dataGridView.CurrentCell; //Dohvati ćeliju koja je pritisnuta
             string siteToUnblock = cell.Value.ToString(); //Dohvati vrijednost ćelije
 
-            string path = @"C:\Windows\System32\drivers\etc\hosts";
+            string windowsPath = Environment.GetEnvironmentVariable("windir");
+            string path = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
             string hostsContent = File.ReadAllText(path); //Pročitaj sve podatke datoteke 'hosts'
 
             string lineToRemove = "127.0.0.1\t" + siteToUnblock; //Izrada linije koju treba ukloniti
