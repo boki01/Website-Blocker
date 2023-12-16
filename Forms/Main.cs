@@ -143,16 +143,27 @@ namespace Website_Blocker_from_scratch
                     string[] addressStrings = addresses.Select(ip => ip.ToString()).ToArray();
                     string addressesString = string.Join(",", addressStrings);
 
-                    INetFwRule firewallRule = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
-                    firewallRule.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
-                    firewallRule.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
-                    firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
-                    firewallRule.Enabled = true;
-                    firewallRule.InterfaceTypes = "All";
-                    firewallRule.RemoteAddresses = addressesString;
-                    firewallRule.Name = "Block " + firstUrl;
+                    INetFwRule firewallRuleOUT = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
+                    firewallRuleOUT.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
+                    firewallRuleOUT.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
+                    firewallRuleOUT.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
+                    firewallRuleOUT.Enabled = true;
+                    firewallRuleOUT.InterfaceTypes = "All";
+                    firewallRuleOUT.RemoteAddresses = addressesString;
+                    firewallRuleOUT.Name = "Block " + firstUrl;
 
-                    firewallPolicy.Rules.Add(firewallRule);
+                    firewallPolicy.Rules.Add(firewallRuleOUT);
+
+                    INetFwRule firewallRuleIN = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
+                    firewallRuleIN.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
+                    firewallRuleIN.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
+                    firewallRuleIN.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN;
+                    firewallRuleIN.Enabled = true;
+                    firewallRuleIN.InterfaceTypes = "All";
+                    firewallRuleIN.RemoteAddresses = addressesString;
+                    firewallRuleIN.Name = "Block " + firstUrl;
+
+                    firewallPolicy.Rules.Add(firewallRuleIN);
                 }
                 catch (Exception ex)
                 {
@@ -241,6 +252,7 @@ namespace Website_Blocker_from_scratch
             try
             {
                 File.WriteAllText(path, hostsContent); //Spremi promjene u datoteku 'hosts'
+                firewallPolicy.Rules.Remove("Block " + siteToUnblock);
                 firewallPolicy.Rules.Remove("Block " + siteToUnblock);
 
             }
