@@ -192,7 +192,7 @@ namespace Website_Blocker_from_scratch
                 Application.Exit();
             }
 
-                update(); //Ažuriranje prikaz u DataGridView-u
+                update(); //Ažuriranje prikaza u DataGridView-u
 
                 MessageBox.Show(
                     "Pristup web stranici je uspješno zabranjen.\nSpremanje promjena može potrajati.",
