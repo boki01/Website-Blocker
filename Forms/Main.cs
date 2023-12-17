@@ -248,8 +248,8 @@ namespace Website_Blocker_from_scratch
             try
             {
                 File.WriteAllText(path, hostsContent); //Spremi promjene u datoteku 'hosts'
-                firewallPolicy.Rules.Remove("Block " + siteToUnblock);
-                firewallPolicy.Rules.Remove("Block " + siteToUnblock);
+                firewallPolicy.Rules.Remove("Block " + siteToUnblock); //Ukloni pravilo iz vatrozida (odlazni promet)
+                firewallPolicy.Rules.Remove("Block " + siteToUnblock); //Ukloni pravilo iz vatrozida (dolazni promet)
 
             }
             catch (Exception ex) //Ako se dogodi pogreška
