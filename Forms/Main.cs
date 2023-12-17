@@ -21,7 +21,7 @@ namespace Website_Blocker_from_scratch
         string[] examples = { "www.facebook.com", "www.youtube.com", "www.twitter.com", "www.instagram.com","boki01.github.io", "web.whatsapp.com","www.example.com","www.tsrb.hr" };
         //Loopback adresa
         string textToAdd = "\n127.0.0.1\t";
-
+        //Vatrozid
         INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
         public Main()
         {
