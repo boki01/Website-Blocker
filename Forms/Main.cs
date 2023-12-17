@@ -169,8 +169,11 @@ namespace Website_Blocker_from_scratch
                     firewallRuleIN.Name = "Block " + firstUrl;
 
                     firewallPolicy.Rules.Add(firewallRuleIN);
-                }
-                catch (Exception ex)
+
+                    File.AppendAllText(hostsFilePath, textToAdd + firstUrl); //Dodavanje prve domene u datoteku 'hosts'
+
+            }
+            catch (Exception ex)
                 {
                     MessageBox.Show(
 
@@ -181,22 +184,6 @@ namespace Website_Blocker_from_scratch
 
                     );
 
-
-                    Application.Exit();
-                }
-
-                try
-                {
-                    File.AppendAllText(hostsFilePath, textToAdd + firstUrl); //Dodavanje prve domene u datoteku 'hosts'
-                }
-                catch (Exception ex) //Ako se dogodi pogreška
-                {
-                    MessageBox.Show(
-                        "1: Program je potrebno pokrenuti s najvećim privilegijama.",
-                        "Pogreška",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
 
                     Application.Exit();
                 }
