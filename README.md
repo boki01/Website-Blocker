@@ -11,10 +11,11 @@ Website Blocker je aplikacija koja omogućava zabranu pristupa pojedinim web-str
 
 ## Početak rada
 
-### Dodatna oprema o kojoj aplikacija ovisi
+### Potrebna programska podrška
 
-Windows Operativni Sustav
-<br />*Napomena: Aplikacija je testirana na Windows 10 Operativnom Sustavu*
+Windows Operacijski Sustav
+<br />Windows firewall (vatrozid)
+<br />*Napomena: Aplikacija je testirana na Windows 10 Operacijskom Sustavu*
 
 ### Pokretanje programa
 
