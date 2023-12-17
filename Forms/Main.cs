@@ -31,7 +31,7 @@ namespace Website_Blocker_from_scratch
             data.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Popunjavanje glavnog zaglavlja 
             data.AllowUserToResizeRows = false; //Zabranjeno mijenjanje veličine redova
             data.AllowUserToResizeColumns = false; //Zabranjeno mijenjanje veličine stupaca
-            this.AcceptButton = add; //Pritiskom ENTER je isto kao da je pritisnut gumb "Dodaj"
+            this.AcceptButton = add; // Pritisak tipke ENTER je isto kao da je pritisnut gumb "Dodaj"
         }
 
         private void Main_Load(object sender, EventArgs e)
