@@ -229,7 +229,7 @@ namespace Website_Blocker_from_scratch
             }
         }
 
-        private void Remove(object sender, EventArgs e) //Funkcija koja barata s uklanjanjem podataka iz 'hosts' datoteke prilikom klika
+        private void Remove(object sender, EventArgs e) //Funkcija koja barata s uklanjanjem zabrane
         {
             
             var menuItem = (ToolStripMenuItem)sender; //Dohvati opciju koja je pritisnuta
