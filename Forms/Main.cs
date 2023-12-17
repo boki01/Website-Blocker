@@ -122,11 +122,16 @@ namespace Website_Blocker_from_scratch
 
         private void add_Click(object sender, EventArgs e) //Prilikom pritiska gumba "Dodaj" ; dodavanje u datoteku "hosts"
         {
-            string windowsPath = Environment.GetEnvironmentVariable("windir");
-            string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
+               
+                if (text.Text == "" || IsParameterInDataGrid(text.Text)) //Ako je TextBox prazan ili je unesena domena već u DataGridView-u => ignoriraj
+                {
+                   text.Text = ""; //Vrati tekst na prvobitno stanje
+                   return;
+                }
+            
+                string windowsPath = Environment.GetEnvironmentVariable("windir");
+                string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
 
-            if (text.Text != "" && !IsParameterInDataGrid(text.Text)) //Ako je tekst u TextBox-u prazan ili ako postoji u DataGridView-u => ignoriraj
-            {
                 
                 string[] urls = text.Text.Split(' '); //U slučaju da je korisnik unio više od jedne domene, razdvoji ih na dijelove
                 
@@ -139,25 +144,25 @@ namespace Website_Blocker_from_scratch
                 }
                 try
                 {
-                    IPAddress[] addresses = Dns.GetHostAddresses(firstUrl);
-                    string[] addressStrings = addresses.Select(ip => ip.ToString()).ToArray();
-                    string addressesString = string.Join(",", addressStrings);
+                    IPAddress[] addresses = Dns.GetHostAddresses(firstUrl); //Dohvati IP adrese domene
+                    string[] addressStrings = addresses.Select(ip => ip.ToString()).ToArray(); //Pretvori IP adrese u string
+                    string addressesString = string.Join(",", addressStrings); //Spoji sve IP adrese u jedan string
 
-                    INetFwRule firewallRuleOUT = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
-                    firewallRuleOUT.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
-                    firewallRuleOUT.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
-                    firewallRuleOUT.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
-                    firewallRuleOUT.Enabled = true;
-                    firewallRuleOUT.InterfaceTypes = "All";
-                    firewallRuleOUT.RemoteAddresses = addressesString;
-                    firewallRuleOUT.Name = "Block " + firstUrl;
+                    INetFwRule firewallRuleOUT = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule")); //Generiraj pravilo za vatrozid
+                    firewallRuleOUT.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK; //Zabrani pristup
+                    firewallRuleOUT.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl; //Opis
+                    firewallRuleOUT.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT; //Pravilo se odnosi na odlazni promet
+                    firewallRuleOUT.Enabled = true; 
+                    firewallRuleOUT.InterfaceTypes = "All"; //Pravilo se odnosi na sve mrežne adaptere
+                    firewallRuleOUT.RemoteAddresses = addressesString; //Unesi sve IP adrese domene
+                    firewallRuleOUT.Name = "Block " + firstUrl; //Ime pravila
 
-                    firewallPolicy.Rules.Add(firewallRuleOUT);
+                    firewallPolicy.Rules.Add(firewallRuleOUT); //Dodaj pravilo
 
                     INetFwRule firewallRuleIN = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
                     firewallRuleIN.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
                     firewallRuleIN.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
-                    firewallRuleIN.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN;
+                    firewallRuleIN.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN; //Pravilo se odnosi na dolazni promet
                     firewallRuleIN.Enabled = true;
                     firewallRuleIN.InterfaceTypes = "All";
                     firewallRuleIN.RemoteAddresses = addressesString;
@@ -204,7 +209,7 @@ namespace Website_Blocker_from_scratch
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
-            }
+           
 
             text.Text = ""; //Vrati tekst u TextBox-u na prvobitno stanje
         }
