@@ -219,7 +219,7 @@ namespace Website_Blocker_from_scratch
                     
                     menuItem.Image = Properties.Resources.Remove; //Dodaj ikonu
 
-                    menuItem.Click += Remove; //Pridruži odgovarajuću funkciju koja barata s uklanjanjem podataka iz 'hosts' datoteke prilikom klika
+                    menuItem.Click += Remove; //Pridruži odgovarajuću funkciju koja barata s uklanjanjem zabrane
                     contextMenu.Items.Add(menuItem); //Dodaj opciju u izbornik
 
                     
