@@ -235,7 +235,7 @@ namespace Website_Blocker_from_scratch
             var menuItem = (ToolStripMenuItem)sender; //Dohvati opciju koja je pritisnuta
             var contextMenu = (ContextMenuStrip)menuItem.Owner; //Dohvati izbornik
             var dataGridView = (DataGridView)contextMenu.SourceControl; //Dohvati DataGridView
-            var cell = dataGridView.CurrentCell; //Dohvati ćeliju koja je pritisnuta
+            var cell = dataGridView.CurrentCell; //Dohvati ćeliju koja je selektirana
             string siteToUnblock = cell.Value.ToString(); //Dohvati vrijednost ćelije
 
             string windowsPath = Environment.GetEnvironmentVariable("windir");
