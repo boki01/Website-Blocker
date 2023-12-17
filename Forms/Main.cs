@@ -142,51 +142,55 @@ namespace Website_Blocker_from_scratch
                     text.Text = ""; //Vrati tekst u TextBox-u na prvobitno stanje
                     return;
                 }
-                try
-                {
-                    IPAddress[] addresses = Dns.GetHostAddresses(firstUrl); //Dohvati IP adrese domene
-                    string[] addressStrings = addresses.Select(ip => ip.ToString()).ToArray(); //Pretvori IP adrese u string
-                    string addressesString = string.Join(",", addressStrings); //Spoji sve IP adrese u jedan string
+            try
+            {
+                IPAddress[] addresses = Dns.GetHostAddresses(firstUrl); //Dohvati IP adrese domene
+                string[] addressStrings = addresses.Select(ip => ip.ToString()).ToArray(); //Pretvori IP adrese u string
+                string addressesString = string.Join(",", addressStrings); //Spoji sve IP adrese u jedan string
 
-                    INetFwRule firewallRuleOUT = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule")); //Generiraj pravilo za vatrozid
-                    firewallRuleOUT.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK; //Zabrani pristup
-                    firewallRuleOUT.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl; //Opis
-                    firewallRuleOUT.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT; //Pravilo se odnosi na odlazni promet
-                    firewallRuleOUT.Enabled = true; 
-                    firewallRuleOUT.InterfaceTypes = "All"; //Pravilo se odnosi na sve mrežne adaptere
-                    firewallRuleOUT.RemoteAddresses = addressesString; //Unesi sve IP adrese domene
-                    firewallRuleOUT.Name = "Block " + firstUrl; //Ime pravila
+                INetFwRule firewallRuleOUT = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule")); //Generiraj pravilo za vatrozid
+                firewallRuleOUT.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK; //Zabrani pristup
+                firewallRuleOUT.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl; //Opis
+                firewallRuleOUT.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT; //Pravilo se odnosi na odlazni promet
+                firewallRuleOUT.Enabled = true;
+                firewallRuleOUT.InterfaceTypes = "All"; //Pravilo se odnosi na sve mrežne adaptere
+                firewallRuleOUT.RemoteAddresses = addressesString; //Unesi sve IP adrese domene
+                firewallRuleOUT.Name = "Block " + firstUrl; //Ime pravila
 
-                    firewallPolicy.Rules.Add(firewallRuleOUT); //Dodaj pravilo
+                firewallPolicy.Rules.Add(firewallRuleOUT); //Dodaj pravilo
 
-                    INetFwRule firewallRuleIN = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
-                    firewallRuleIN.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
-                    firewallRuleIN.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
-                    firewallRuleIN.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN; //Pravilo se odnosi na dolazni promet
-                    firewallRuleIN.Enabled = true;
-                    firewallRuleIN.InterfaceTypes = "All";
-                    firewallRuleIN.RemoteAddresses = addressesString;
-                    firewallRuleIN.Name = "Block " + firstUrl;
+                INetFwRule firewallRuleIN = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
+                firewallRuleIN.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
+                firewallRuleIN.Description = "Pravilo generirano od strane aplikacije Website Blocker;\t" + firstUrl;
+                firewallRuleIN.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN; //Pravilo se odnosi na dolazni promet
+                firewallRuleIN.Enabled = true;
+                firewallRuleIN.InterfaceTypes = "All";
+                firewallRuleIN.RemoteAddresses = addressesString;
+                firewallRuleIN.Name = "Block " + firstUrl;
 
-                    firewallPolicy.Rules.Add(firewallRuleIN);
+                firewallPolicy.Rules.Add(firewallRuleIN);
 
-                    File.AppendAllText(hostsFilePath, textToAdd + firstUrl); //Dodavanje prve domene u datoteku 'hosts'
+                File.AppendAllText(hostsFilePath, textToAdd + firstUrl); //Dodavanje prve domene u datoteku 'hosts'
 
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(
+
+                    "?: \n.Nije moguće pronaći IP adrese\n.Greška s vatrozidom.\n.Program je potrebno pokrenuti s najvećim privilegijama.\n\n" + ex.Message,
+                    "Pogreška",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+
+                );
+
+                if (ex.Message == "No such host is known") //Ako nije moguće pronaći IP adrese
                 {
-                    MessageBox.Show(
-
-                        "?: \n.Nije moguće pronaći IP adrese\n.Greška s vatrozidom.\n.Program je potrebno pokrenuti s najvećim privilegijama.\n\n" + ex.Message,
-                        "Pogreška",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-
-                    );
-
-
-                    Application.Exit();
+                    text.Text = ""; //Vrati tekst u TextBox-u na prvobitno stanje
+                    return;
                 }
+                Application.Exit();
+            }
 
                 update(); //Ažuriranje prikaz u DataGridView-u
 
