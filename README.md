@@ -6,7 +6,7 @@ Jednostavna aplikacija koja omogućava zabranu pristupa pojedinim web-stranicama
 
 Website Blocker je aplikacija koja omogućava zabranu pristupa pojedinim web-stranicama na vašem računalu. Radi na način da mijenja ugrađenu 'hosts' datoteku. 'hosts' je sistemska datoteka koja omogućava povezivanje IP adresa s domenama. Znajući taj podatak, aplikacija jednostavno registrira neželjenu domenu web-stranice s loopback adresom (127.0.0.1) što, u najužem smislu, blokira pristup web-stranici. Ovaj pristup je poboljšan uporabom vatrozida.
 
-Aplikacija je napravljeno pomoću .NET framework-a točnije pomoću Windows Forms tehnologije u C# programskom jeziku.
+Aplikacija je napravljena pomoću .NET framework-a točnije pomoću Windows Forms tehnologije u C# programskom jeziku.
 
 ## Početak rada
 
