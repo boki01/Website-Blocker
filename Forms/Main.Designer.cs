@@ -57,6 +57,7 @@
             this.data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.data.Size = new System.Drawing.Size(504, 277);
             this.data.TabIndex = 0;
+            this.data.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_CellMouseDown);
             this.data.MouseClick += new System.Windows.Forms.MouseEventHandler(this.data_MouseClick);
             // 
             // panel1

@@ -18,7 +18,7 @@ namespace Website_Blocker_from_scratch
     public partial class Main : Form
     {
         //Primjeri
-        string[] examples = { "www.facebook.com", "www.youtube.com", "www.twitter.com", "www.instagram.com","boki01.github.io", "web.whatsapp.com","www.example.com","www.tsrb.hr" };
+        string[] examples = { "www.facebook.com", "www.youtube.com", "www.twitter.com", "www.instagram.com", "boki01.github.io", "web.whatsapp.com", "www.example.com", "www.tsrb.hr" };
         //Loopback adresa
         string textToAdd = "\n127.0.0.1\t";
         //Vatrozid
@@ -41,7 +41,7 @@ namespace Website_Blocker_from_scratch
             int r = rnd.Next(examples.Length);
             text.Cue = examples[r];
 
-            try 
+            try
             {
                 //Čitanje datoteke 'hosts'
                 string windowsPath = Environment.GetEnvironmentVariable("windir");
@@ -78,7 +78,7 @@ namespace Website_Blocker_from_scratch
                 ); //Obavijesti korisnika
                 Application.Exit(); //Izađi iz programa
             }
-            
+
         }
         private void update()
         {
@@ -92,9 +92,9 @@ namespace Website_Blocker_from_scratch
 
             foreach (string line in lines)
             {
-                if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#")) 
+                if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#"))
                 {
-                    string[] parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries); 
+                    string[] parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                     if (parts.Length >= 2)
                     {
                         dt.Rows.Add(parts[1]);
@@ -107,10 +107,10 @@ namespace Website_Blocker_from_scratch
 
         private bool IsParameterInDataGrid(string parameter) //Provjeri postoji li element u DataGridView-u
         {
-            
+
             foreach (DataGridViewRow row in data.Rows) //Za svaki red u DataGridView-u
             {
-                
+
                 if (row.Cells["Crna lista"].Value.ToString() == parameter) //Provjeri je li vrijednost u stupcu "Crna lista" jednaka parametru
                 {
                     return true;
@@ -122,26 +122,26 @@ namespace Website_Blocker_from_scratch
 
         private void add_Click(object sender, EventArgs e) //Prilikom pritiska gumba "Dodaj" ; dodavanje u datoteku "hosts"
         {
-               
-                if (text.Text == "" || IsParameterInDataGrid(text.Text)) //Ako je TextBox prazan ili je unesena domena već u DataGridView-u => ignoriraj
-                {
-                   text.Text = ""; //Vrati tekst na prvobitno stanje
-                   return;
-                }
-            
-                string windowsPath = Environment.GetEnvironmentVariable("windir");
-                string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
 
-                
-                string[] urls = text.Text.Split(' '); //U slučaju da je korisnik unio više od jedne domene, razdvoji ih na dijelove
-                
-                string firstUrl = urls[0]; //Prva domena
+            if (text.Text == "" || IsParameterInDataGrid(text.Text)) //Ako je TextBox prazan ili je unesena domena već u DataGridView-u => ignoriraj
+            {
+                text.Text = ""; //Vrati tekst na prvobitno stanje
+                return;
+            }
 
-                if (IsParameterInDataGrid(firstUrl)) //Ako je prva domena već u DataGridView-u => ignoriraj
-                {
-                    text.Text = ""; //Vrati tekst u TextBox-u na prvobitno stanje
-                    return;
-                }
+            string windowsPath = Environment.GetEnvironmentVariable("windir");
+            string hostsFilePath = Path.Combine(windowsPath, "System32", "drivers", "etc", "hosts");
+
+
+            string[] urls = text.Text.Split(' '); //U slučaju da je korisnik unio više od jedne domene, razdvoji ih na dijelove
+
+            string firstUrl = urls[0]; //Prva domena
+
+            if (IsParameterInDataGrid(firstUrl)) //Ako je prva domena već u DataGridView-u => ignoriraj
+            {
+                text.Text = ""; //Vrati tekst u TextBox-u na prvobitno stanje
+                return;
+            }
             try
             {
                 IPAddress[] addresses = Dns.GetHostAddresses(firstUrl); //Dohvati IP adrese domene
@@ -192,15 +192,15 @@ namespace Website_Blocker_from_scratch
                 Application.Exit();
             }
 
-                update(); //Ažuriranje prikaza u DataGridView-u
+            update(); //Ažuriranje prikaza u DataGridView-u
 
-                MessageBox.Show(
-                    "Pristup web stranici je uspješno zabranjen.\nSpremanje promjena može potrajati.",
-                    "Uspjeh",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-           
+            MessageBox.Show(
+                "Pristup web stranici je uspješno zabranjen.\nSpremanje promjena može potrajati.",
+                "Uspjeh",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
 
             text.Text = ""; //Vrati tekst u TextBox-u na prvobitno stanje
         }
@@ -216,13 +216,13 @@ namespace Website_Blocker_from_scratch
                     //Dodaj ContextMenuStrip = izbornik opcija
                     ContextMenuStrip contextMenu = new ContextMenuStrip();
                     ToolStripMenuItem menuItem = new ToolStripMenuItem("Ukloni"); //Dodaj opciju "Ukloni"
-                    
+
                     menuItem.Image = Properties.Resources.Remove; //Dodaj ikonu
 
                     menuItem.Click += Remove; //Pridruži odgovarajuću funkciju koja barata s uklanjanjem zabrane
                     contextMenu.Items.Add(menuItem); //Dodaj opciju u izbornik
 
-                    
+
                     contextMenu.Show(data, new Point(e.X, e.Y)); //Prikaži izbornik na poziciji klika miša
 
                 }
@@ -231,7 +231,7 @@ namespace Website_Blocker_from_scratch
 
         private void Remove(object sender, EventArgs e) //Funkcija koja barata s uklanjanjem zabrane
         {
-            
+
             var menuItem = (ToolStripMenuItem)sender; //Dohvati opciju koja je pritisnuta
             var contextMenu = (ContextMenuStrip)menuItem.Owner; //Dohvati izbornik
             var dataGridView = (DataGridView)contextMenu.SourceControl; //Dohvati DataGridView
@@ -264,7 +264,7 @@ namespace Website_Blocker_from_scratch
                 Application.Exit();
             }
 
-            
+
             dataGridView.Rows.RemoveAt(cell.RowIndex); //Ukloni red iz DataGridView-a
         }
 
@@ -284,5 +284,18 @@ namespace Website_Blocker_from_scratch
             info.Visible = false;
             infoIcon.Visible = false;
         }
+
+        private void data_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var dataGrid = (DataGridView)sender;
+            if (e.Button == MouseButtons.Right && e.RowIndex != -1 && e.ColumnIndex != -1)
+            {
+                var cell = dataGrid.Rows[e.RowIndex].Cells[e.ColumnIndex == -1 ? 1 : e.ColumnIndex];
+                dataGrid.CurrentCell = cell;
+                cell.Selected = true;
+                dataGrid.Focus();
+            }
+        }
+
     }
 }
