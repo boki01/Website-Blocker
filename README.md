@@ -30,4 +30,5 @@ https://github.com/boki01/Website-Blocker/assets/137549122/4f058128-1202-4077-b8
 
 ## Autor
 
-Borna Štefan 2b
+Borna Štefan
+
