@@ -18,7 +18,7 @@ Windows Operacijski Sustav
 
 ### Pokretanje programa
 
-Jednostavno preuzeti .exe datoteku koja možete pronaći pod [Releases](https://github.com/boki01/Website-Blocker/releases). Pokrenuti aplikaciju s najvećim privilegijama.
+Jednostavno preuzeti .exe datoteku koju možete pronaći pod [Releases](https://github.com/boki01/Website-Blocker/releases). Pokrenuti aplikaciju s najvećim privilegijama.
 
 ### Demonstracija
 
