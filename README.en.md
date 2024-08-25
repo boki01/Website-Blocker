@@ -1,4 +1,4 @@
-# Website Blocker
+# Website Blocker [EN]
 
 [![hr](https://img.shields.io/badge/lang-hr-blue.svg)](https://github.com/boki01/Website-Blocker/blob/master/README.md)
 
