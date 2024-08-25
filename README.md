@@ -1,6 +1,6 @@
 # Website Blocker
 
-Jednostavna aplikacija koja omogućava zabranu pristupa pojedinim web-stranicama.
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/boki01/Website-Blocker/blob/master/README.en.md)
 
 ## Opis
 
@@ -13,7 +13,7 @@ Aplikacija je napravljena pomoću .NET framework-a točnije pomoću Windows Form
 ### Potrebna programska podrška
 
 Windows Operacijski Sustav
-<br />Windows firewall (vatrozid)
+<br />Windows firewall
 <br />*Napomena: Aplikacija je testirana na Windows 10 Operacijskom Sustavu*
 
 ### Pokretanje programa
